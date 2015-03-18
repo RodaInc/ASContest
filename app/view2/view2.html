@@ -1,7 +1,9 @@
+<div ng-controller="View2Ctrl">
 <p>Поиск по заданным критериям</p>
         <label><input type="radio" name="event_type" value="con"/>Концерт</label>
         <label><input type="radio" name="event_type" value="foot"/>Футбол</label>
         <br />
         <input type="text" id="city">
         <br />
-        <input type="button" onclick="alert('under construction')" value="Поиск"/>
+        <input type="button" ng-click="getEvens()" value="Поиск"/>
+</div>
