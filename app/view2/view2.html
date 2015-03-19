@@ -7,5 +7,31 @@
         <input type="text" id="city">
         <br/>
         <input type="button" ng-click="getEvens()" value="Поиск"/>
+        <table class="table">
+        <tr ng-repeat="event in events">
+            <td>
+                {{event.title}}
+            </td>
+            <td>
+                {{event.type}}
+            </td>
+            <td>
+                {{event.country}}
+            </td>
+            <td>
+                {{event.city}}
+            </td>
+
+            <td>
+                {{event.url}}
+            </td>
+            <td>
+                {{event.date}}
+            </td>
+            <td>
+                <input type="button" ng-click="searchTicket(event.city, event.date)">
+            </td>
+        </tr>
+        </table>
     </div>
 </div>

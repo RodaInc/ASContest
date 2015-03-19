@@ -12,39 +12,38 @@ angular.module('myApp.view2', ['ngRoute'])
 
     .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
         $scope.clientIP = '';
+        $scope.events = [];
         $scope.getEvens = function () {
-            $scope.clientIP = $scope.getIP();
-            $http.get('http://localhost:4567/?band=acdc&ip=' + $scope.clientIP).
+
+            $http.get('http://localhost:4567/events?band=acdc').
                 success(function (data, status, headers, config) {
-                    console.log(data);
+                    //console.log(data);
+                    $scope.events = data;
                     angular.forEach(data, function (value, key) {
-                        angular.forEach(value, function (event, k) {
-                            if (typeof event === 'object' && event != null) {
-                                console.log(angular.toJson(event));
-                                console.log(event.datetime_local);
-                                console.log(event.venue.city);
-                                $scope.clientIP = $scope.getIP();
-                                //$scope.getIATA($scope.clientIP);
-                            }
+                        console.log(value);
+
                         });
                     });
-                });
+
         };
         // get client IP
         $scope.getIP = function(){
             $http.get('http://jsonip.appspot.com/').
                 success(function (data, status, headers, config) {
-                    console.log(data);
+                    console.log(data.ip);
                     return data.ip;
                 });
         };
-        // find client location data
-        $scope.getIATA = function(ip){
-            $http.get('http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=' + ip).
+
+        //Search for avia tickets request
+        $scope.searchTicket = function(city, date){
+
+            $http.get('http://localhost:4567/tickets?city=' + city + '&date=' + date).
                 success(function (data, status, headers, config) {
-                    console.log(data);
-                    return data;
+                    //console.log(data);
+
                 });
+
         };
     }]);
 
