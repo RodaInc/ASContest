@@ -2,31 +2,50 @@
 
 angular.module('myApp.view2', ['ngRoute'])
 
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
         $routeProvider.when('/view2', {
             templateUrl: 'view2/view2.html',
             controller: 'View2Ctrl'
         });
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }])
 
     .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
+        $scope.clientIP = '';
         $scope.getEvens = function () {
-            console.log('test');
-
-            $http.get('http://api.seatgeek.com/2/events?performers.slug=acdc').
+            $scope.clientIP = $scope.getIP();
+            $http.get('http://localhost:4567/?band=acdc&ip=' + $scope.clientIP).
                 success(function (data, status, headers, config) {
                     console.log(data);
                     angular.forEach(data, function (value, key) {
                         angular.forEach(value, function (event, k) {
                             if (typeof event === 'object' && event != null) {
-                                console.log(JSON.stringify(event));
+                                console.log(angular.toJson(event));
                                 console.log(event.datetime_local);
                                 console.log(event.venue.city);
+                                $scope.clientIP = $scope.getIP();
+                                //$scope.getIATA($scope.clientIP);
                             }
                         });
                     });
                 });
-        }
+        };
+        // get client IP
+        $scope.getIP = function(){
+            $http.get('http://jsonip.appspot.com/').
+                success(function (data, status, headers, config) {
+                    console.log(data);
+                    return data.ip;
+                });
+        };
+        // find client location data
+        $scope.getIATA = function(ip){
+            $http.get('http://www.travelpayouts.com/whereami?locale=ru&callback=useriata&ip=' + ip).
+                success(function (data, status, headers, config) {
+                    console.log(data);
+                    return data;
+                });
+        };
     }]);
 
 
