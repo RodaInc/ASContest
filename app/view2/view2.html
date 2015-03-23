@@ -29,9 +29,31 @@
                 {{event.date}}
             </td>
             <td>
-                <input type="button" ng-click="searchTicket(event.city, event.date)">
+
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                    Поиск билетов
+                </button>
+                <!--<input type="button" ng-click="searchTicket(event.city, event.country, event.date)">-->
             </td>
         </tr>
         </table>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">Форма для поиска билетов</div>
+                <div class="modal-body">
+                    <label>Количество взрослых</label><input type="text" id="adults"/><br/>
+                    <label>Количество детей</label><input type="text" id="children"/><br/>
+                    <label>Максимальный термин прибывания</label><input type="text" id="maxstay" value="5"/><br/>
+                    <label>Минимальный термин прибывания</label><input type="text" id="minstay" value="1"/><br/>
+                    <label>Искать отель</label><input type="checkbox" id="hotelneed">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
