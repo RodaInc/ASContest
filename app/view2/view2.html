@@ -37,7 +37,7 @@
             </td>
         </tr>
         </table>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="setBaseData(event.city, event.country, event.date)">
             Test button
         </button>
     </div>
@@ -54,6 +54,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="searchTicket()">Search</button>
                 </div>
             </div>
         </div>
