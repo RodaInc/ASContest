@@ -11,11 +11,16 @@ angular.module('myApp.view2', ['ngRoute'])
     }])
 
     .controller('View2Ctrl', ['$scope', '$http', function ($scope, $http) {
+
         $scope.clientIP = '';
         $scope.events = [];
         $scope.city = "";
         $scope.country = "";
         $scope.date = "";
+        $scope.adults = 1;
+        $scope.children = 0;
+        $scope.minstay = 1;
+        $scope.maxstay = 5;
 
         $scope.getEvens = function () {
 
@@ -41,14 +46,26 @@ angular.module('myApp.view2', ['ngRoute'])
 
         //Search for avia tickets request
         $scope.searchTicket = function(){
-
-            $http.get('http://localhost:4567/tickets?city=' + $scope.city + '&country=' + $scope.country + '&date=' + $scope.date).
+            var hotelsearch = '';
+            if($scope.hotelneed){
+                hotelsearch = '&hotelsearch=1';
+            }
+            $http.get('http://localhost:4567/tickets' +
+                '?city=' + $scope.city +
+                '&country=' + $scope.country +
+                '&date=' + $scope.date +
+                '&adults' + $scope.adults +
+                '&children' + $scope.children +
+                '&minstay' + $scope.minstay +
+                '&maxstay' + $scope.maxstay + hotelsearch
+            ).
                 success(function (data, status, headers, config) {
                     //console.log(data);
 
                 });
 
         };
+        
         $scope.setBaseData = function (city, country, date) {
             $scope.city = city;
             $scope.country = country;
