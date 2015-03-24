@@ -65,7 +65,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 });
 
         };
-        
+
         $scope.setBaseData = function (city, country, date) {
             $scope.city = city;
             $scope.country = country;

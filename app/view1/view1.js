@@ -10,5 +10,19 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', [function() {
+      $scope.searchText = '';
 
+      $scope.fulltextsearch = function () {
+
+        $http.get('http://localhost:4567/fulltext?text=' + $scope.searchText).
+            success(function (data, status, headers, config) {
+              //console.log(data);
+              $scope.events = data;
+              angular.forEach(data, function (value, key) {
+                console.log(value);
+
+              });
+            });
+
+      };
 }]);
