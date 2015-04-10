@@ -24,12 +24,13 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
 
         $scope.getEvens = function () {
 
-            $http.get('http://localhost:4567/events?band=acdc').
+            $http.get('http://localhost:4567/events?band='+$scope.eventName).
                 success(function (data, status, headers, config) {
-                    //console.log(data);
+
                     $scope.events = data;
+
                     angular.forEach(data, function (value, key) {
-                        console.log(value);
+                     //   console.log(value);
 
                         });
                     });
@@ -70,6 +71,10 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
             $scope.city = city;
             $scope.country = country;
             $scope.date = date;
+        };
+
+        $scope.getMoreInfo = function (url) {
+            window.open(url);
         }
     }]);
 

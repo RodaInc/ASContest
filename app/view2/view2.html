@@ -1,10 +1,6 @@
 <div ng-controller="View2Ctrl">
-    <div class="col-sm-12">
-        <p>Поиск по заданным критериям</p>
-        <!--label><input type="radio" name="event_type" value="con"/>Концерт</label>
-        <label><input type="radio" name="event_type" value="foot"/>Футбол</label>
-        <br/>
-        <input type="text" id="city"-->
+    <div class="col-md-12">
+
         <div class="control-group">
             <label class="control-label" for="datepickerTo">Type of event</label>
             <div class="controls">
@@ -26,17 +22,15 @@
             <div class="control-group">
                 <label class="control-label" for="eventName">Band/Event/Singer/Artist</label>
                 <div class="controls">
-                    <input type="text" id="eventName" placeholder="Enter event">
+                    <input type="text" id="eventName" ng-model="eventName" placeholder="Enter event">
                 </div>
             </div>
-
 
             <div class="control-group">
                 <label class="control-label" for="datepickerFrom">Start date</label>
                 <div class="controls">
                     <div class="date" id="datepickerFrom" data-date="dateValue: dateFrom" data-date-format="dd-mm-yyyy">
                         <input type="text" date-time ng-model="datepickerFrom" min-view="date" view="date">
-                        <!--<input class="input-daterange" type="text" data-bind="value: fromDate" />-->
                         <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
@@ -46,7 +40,6 @@
                 <div class="controls">
                     <div class="date" id="datepickerTo" data-date="dateValue: dateTo" data-date-format="dd-mm-yyyy">
                         <input type="text" date-time ng-model="datepickerTo" min-view="date" view="date">
-                        <!--<input class="input-daterange" type="text" data-bind="value: fromDate" />-->
                         <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
@@ -54,41 +47,58 @@
 
         </form>
         <br/>
-        <input type="button" ng-click="getEvens()" value="Поиск"/>
-        <table class="table">
+
+        <!--<input type="button" ng-click="getEvens()" value="Поиск"/>-->
+
+        <table n class="table table-striped">
+            <th class="text-center">Band</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Country</th>
+            <th class="text-center">City</th>
+            <th class="text-center">Details</th>
+            <th class="text-center">Date</th>
         <tr ng-repeat="event in events">
-            <td>
+            <td class="text-center">
                 {{event.title}}
             </td>
-            <td>
+            <td class="text-center">
                 {{event.type}}
             </td>
-            <td>
+            <td class="text-center">
                 {{event.country}}
             </td>
-            <td>
+            <td class="text-center">
                 {{event.city}}
             </td>
 
-            <td>
-                {{event.url}}
+            <td class="text-center">
+                <a href="{{event.url}}" >Get more...</a>
             </td>
-            <td>
+            <td class="text-center">
                 {{event.date}}
             </td>
-            <td>
+            <!--<td>
 
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                     Поиск билетов
                 </button>
-                <!--<input type="button" ng-click="searchTicket(event.city, event.country, event.date)">-->
-            </td>
-        </tr>
+
+            </td>-->
+
         </table>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="setBaseData(event.city, event.country, event.date)">
-            Test button
+
+
+        <!--  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="setBaseData(event.city, event.country, event.date)">
+              Test button
+          </button>-->
+    </div>
+
+    <div class="col-md-12 ">
+        <button type="button" class="search-button btn btn-primary btn-sm" data-toggle="modal" ng-click="getEvens()">
+            Search
         </button>
     </div>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
