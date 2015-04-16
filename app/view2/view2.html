@@ -75,7 +75,7 @@
             </td>
             <!--<td>
 
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="setBaseData(event.city, event.country, event.date)">
                     Поиск билетов
                 </button>
 
@@ -102,8 +102,8 @@
                 <div class="modal-body">
                     <label>Количество взрослых</label><input type="text" id="adults" ng-model="adults"/><br/>
                     <label>Количество детей</label><input type="text" id="children" ng-model="children"/><br/>
-                    <label>Максимальный термин прибывания</label><input type="text" id="maxstay" value="5" ng-model="maxstay"/><br/>
-                    <label>Минимальный термин прибывания</label><input type="text" id="minstay" value="1" ng-model="minstay"/><br/>
+                    <label>Максимальный термин прибывания</label><input type="text" id="maxstay" ng-model="maxstay"/><br/>
+                    <label>Минимальный термин прибывания</label><input type="text" id="minstay" ng-model="minstay"/><br/>
                     <label>Искать отель</label><input type="checkbox" id="hotelneed" ng-model="hotelneed">
                 </div>
                 <div class="modal-footer">

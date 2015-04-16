@@ -86,15 +86,27 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
             var hotelsearch = '';
             if($scope.hotelneed){
                 hotelsearch = '&hotelsearch=1';
+            } else {
+                hotelsearch = '&hotelsearch='
             }
+            console.log($scope.maxstay);
+            console.log('http://localhost:4567/tickets' +
+            '?city=' + $scope.city +
+            '&country=' + $scope.country +
+            '&date=' + $scope.date +
+            '&adults' + $scope.adults +
+            '&children' + $scope.children +
+            '&minstay' + $scope.minstay +
+            '&maxstay' + $scope.maxstay + hotelsearch);
+
             $http.get('http://localhost:4567/tickets' +
                 '?city=' + $scope.city +
                 '&country=' + $scope.country +
                 '&date=' + $scope.date +
-                '&adults' + $scope.adults +
-                '&children' + $scope.children +
-                '&minstay' + $scope.minstay +
-                '&maxstay' + $scope.maxstay + hotelsearch
+                '&adults=' + $scope.adults +
+                '&children=' + $scope.children +
+                '&minstay=' + $scope.minstay +
+                '&maxstay=' + $scope.maxstay + hotelsearch
             ).
                 success(function (data, status, headers, config) {
                     //console.log(data);
@@ -107,7 +119,10 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
             $scope.city = city;
             $scope.country = country;
             $scope.date = date;
-        };
+            console.log($scope.city);
+            console.log($scope.country);
+            console.log($scope.date);
+        }
 
         $scope.getMoreInfo = function (url) {
             window.open(url);
