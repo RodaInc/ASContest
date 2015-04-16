@@ -26,7 +26,7 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
         $scope.parent = {datepickerFrom:'', datepickerTo:''};
 
         $scope.getEvens = function () {
-
+            $scope.search = "";
             if ($scope.cityName){
                 $scope.search = $scope.search + "&city=" + $scope.cityName.replace(" ","-");
             }
