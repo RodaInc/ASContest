@@ -16,7 +16,7 @@
             <div class="control-group">
                 <label class="control-label" for="cityName">City</label>
                 <div class="controls">
-                    <input type="text" id="cityName" placeholder="Enter city">
+                    <input type="text" id="cityName" ng-model="cityName" placeholder="Enter city">
                 </div>
             </div>
             <div class="control-group">
@@ -29,19 +29,15 @@
             <div class="control-group">
                 <label class="control-label" for="datepickerFrom">Start date</label>
                 <div class="controls">
-                    <div class="date" id="datepickerFrom" data-date="dateValue: dateFrom" data-date-format="dd-mm-yyyy">
-                        <input type="text" date-time ng-model="datepickerFrom" min-view="date" view="date">
-                        <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
+                    <input type="text" id="datepickerFrom" date-time ng-model="parent.datepickerFrom" min-view="date" view="date">
+                    <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="datepickerTo">Finish date</label>
                 <div class="controls">
-                    <div class="date" id="datepickerTo" data-date="dateValue: dateTo" data-date-format="dd-mm-yyyy">
-                        <input type="text" date-time ng-model="datepickerTo" min-view="date" view="date">
-                        <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
+                    <input type="text" date-time id="datepickerTo" ng-model="parent.datepickerTo" min-view="date" view="date">
+                    <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>
             </div>
 

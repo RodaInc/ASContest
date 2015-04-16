@@ -21,10 +21,46 @@ angular.module('myApp.view2', ['ngRoute','datePicker'])
         $scope.children = 0;
         $scope.minstay = 1;
         $scope.maxstay = 5;
+        $scope.event = "";
+        $scope.search = "";
+        $scope.parent = {datepickerFrom:'', datepickerTo:''};
 
         $scope.getEvens = function () {
 
-            $http.get('http://localhost:4567/events?band='+$scope.eventName).
+            if ($scope.cityName){
+                $scope.search = $scope.search + "&city=" + $scope.cityName.replace(" ","-");
+            }
+
+            if ($scope.eventName){
+                $scope.search = $scope.search + "&band=" + $scope.eventName.replace(" ","-");
+            }
+
+            if ($scope.parent.datepickerFrom){
+                $scope.start_date = $scope.parent.datepickerFrom.getFullYear() + "-" +
+                                    (($scope.parent.datepickerFrom.getMonth() < 10)?"0":"") +
+                                    ($scope.parent.datepickerFrom.getMonth()+1) + "-" +
+                                    (($scope.parent.datepickerFrom.getDate() < 10)?"0":"") +
+                                    $scope.parent.datepickerFrom.getDate();
+
+                $scope.search = $scope.search + "&date_start=" + $scope.start_date;
+            }
+
+            if ($scope.parent.datepickerTo){
+                $scope.end_date = $scope.parent.datepickerTo.getFullYear() + "-" +
+                                (($scope.parent.datepickerTo.getMonth() < 10)?"0":"") +
+                                ($scope.parent.datepickerTo.getMonth()+1) + "-" +
+                                (($scope.parent.datepickerTo.getDate() < 10)?"0":"") +
+                                $scope.parent.datepickerTo.getDate();
+
+                $scope.search = $scope.search + "&date_end=" + $scope.end_date;
+            }
+
+            $scope.req = 'http://localhost:4567/events?'
+            + $scope.search;
+
+            console.log($scope.req);
+
+            $http.get($scope.req).
                 success(function (data, status, headers, config) {
 
                     $scope.events = data;
